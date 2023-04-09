@@ -12,16 +12,18 @@ function MovieDetails() {
 
   return (
     <>
+    {movie[0]?.name && 
       <div id="movie_details" key={movie.id}>
         <button onClick={backHandler}>BACK</button>
         <h3>{movie.title}</h3>
         <img src={movie[0].poster} alt={movie[0].title} />
         <h5>Description: {movie[0].description}</h5>
         <h5>Genres:</h5>
-        {movie[0]?.name && movie.map((item) => (
+        {movie.map((item) => (
           <li>{item.name}</li>
         ))}
       </div>
+}
     </>
   );
 }
