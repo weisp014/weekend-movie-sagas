@@ -17,13 +17,13 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIE_DETAILS', fetchDetails)
 }
 
-// TODO: get 1 movie from DB
+// get 1 movie from DB
 function* fetchDetails(action) {
     //get 1 movie from DB where id matches
     try {
         const movie = yield axios.get(`/api/movie/${action.payload}`);
         console.log('get movie details', movie.data[0]);
-        yield put({ type: 'SET_ACTIVE_MOVIE', payload: movie.data[0]});
+        yield put({ type: 'SET_ACTIVE_MOVIE', payload: movie.data});
     } catch {
         console.log('error getting movie details');
     }
