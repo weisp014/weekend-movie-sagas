@@ -14,10 +14,12 @@ function MovieList() {
   const movies = useSelector((store) => store.movies);
   const history = useHistory();
 
+  // fetch all movies on page load
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
   }, []);
 
+  // fetch details for movie clicked
   const clickHandler = (id) => {
     console.log("go to details page for movie:", id);
     dispatch({
@@ -30,7 +32,6 @@ function MovieList() {
   return (
     <main>
       <h1>Movie List</h1>
-      {/* <section className="movies"> */}
       <Grid container spacing={2}>
         {movies.map((movie) => {
           return (
@@ -64,7 +65,6 @@ function MovieList() {
           );
         })}
       </Grid>
-      {/* </section> */}
     </main>
   );
 }
