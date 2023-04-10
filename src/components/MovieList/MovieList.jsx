@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./MovieList.css";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
 
 function MovieList() {
   const dispatch = useDispatch();
@@ -30,36 +30,41 @@ function MovieList() {
   return (
     <main>
       <h1>Movie List</h1>
-      <section className="movies">
+      {/* <section className="movies"> */}
+      <Grid container spacing={2}>
         {movies.map((movie) => {
           return (
-            <div key={movie.id}>
+            <Grid key={movie.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
-                  sx={{ height:500 }}
+                  sx={{ height: 500 }}
                   image={movie.poster}
                   title={movie.title}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                  {movie.title}
+                    {movie.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica
+                    {movie.description.slice(0, 80)}...
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button onClick={() => {
-                  clickHandler(movie.id);
-                }} size="small">Details</Button>
+                  <Button
+                    onClick={() => {
+                      clickHandler(movie.id);
+                    }}
+                    size="small"
+                  >
+                    Details
+                  </Button>
                 </CardActions>
               </Card>
-            </div>
+            </Grid>
           );
         })}
-      </section>
+      </Grid>
+      {/* </section> */}
     </main>
   );
 }

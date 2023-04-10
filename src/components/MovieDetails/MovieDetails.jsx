@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 function MovieDetails() {
   const movie = useSelector((store) => store.movieDetails);
   const history = useHistory();
-  console.log(movie[0].title);
 
   const backHandler = () => {
     history.goBack();
@@ -20,7 +19,7 @@ function MovieDetails() {
         <h5>Description: {movie[0].description}</h5>
         <h5>Genres:</h5>
         {movie.map((item) => (
-          <span>{item.name} </span>
+          <span key={item.id}>{item.name} </span>
         ))}
       </div>
 }
